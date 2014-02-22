@@ -81,12 +81,12 @@ may be substituted with the user provided ones.
 Returns list of all branches inside the specified directory.
 
     Create-Branch `
-        -SourceRoot '^/Root' `
-        -SourceBranchesBase 'branches' `
-        -SourcePostfix 'company' `
+        -SourceRoot `
+        -SourceBranches `
+        -SourcePostfix `
         -SourceName 'trunk' `
         -TargetRoot <the same as SourceRoot> `
-        -TargetBranchesBase <the same as SourceBranchesBase> `
+        -TargetBranches <the same as SourceBranches> `
         -TargetPostfix <the same as SourcePostfix> `
         -TargetName <mandatory>
 
