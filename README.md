@@ -7,9 +7,10 @@ working with `svn` source control.
 Configuration
 -------------
 
-Currently all configuration should be done by passing the parameters
-to the functions. Please see the function descriptions if you want to
-know more.
+The values for project root path, branches base path, postfix can be
+configured through `SvnUtils.config` file placed in the current
+directory or somewhere at parent directories. See the example
+`SvnUtils.config` file bundled with the module.
 
 You may want to tune the `Resolve-Branch` script that controls aliases
 for branch names. Feel free to modify the corresponding script file.
