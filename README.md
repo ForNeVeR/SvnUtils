@@ -70,11 +70,13 @@ All commands should be executed inside an existing repository. Some
 information (e.g. repository root and current branch name) will be
 extracted from it.
 
-Most parameters has the default values (in future the defaults will be
-taken from the configuration file). Defaults may be replaced in every
-command invocation.
+Most parameters will be taken from configuration file if present; they
+may be substituted with the user provided ones.
 
-    Get-Branch -Root '^/Root' -Branches '/branches' -Postfix '/company'
+    Get-Branch `
+        -Root <project root path> `
+        -Branches <branches base path> `
+        -Postfix <postfix>
 
 Returns list of all branches inside the specified directory.
 
