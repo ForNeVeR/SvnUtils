@@ -13,7 +13,9 @@ function Resolve-Branch {
 
 	$urlParts = switch ($BranchName) {
 		'current' {
-			$info = & $dir\Parse-SvnInfo.ps1 $(svn info)
+			$config = Get-Configuration
+			$svn = $config.GetValue('svn', 'svn')
+			$info = Parse-SvnInfo $(& $svn info)
 			@($info['URL'])
 		}
 
