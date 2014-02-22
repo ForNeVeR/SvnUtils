@@ -1,32 +1,33 @@
-param(
-    $SourceRoot = '^/Root',
-    $SourceBranchesBase = 'branches',
-    $SourceBranchesPostfix = 'company',
-    [Parameter(Mandatory = $true, Position = 1)]
-    $SourceName,
+function Merge-Branch {
+	[CmdletBinding()]
+	param(
+		$SourceRoot = '^/Root',
+		$SourceBranchesBase = 'branches',
+		$SourceBranchesPostfix = 'company',
+		[Parameter(Mandatory = $true, Position = 1)]
+		$SourceName,
 
-    $TargetRoot = $SourceRoot,
-    $TargetBranchesBase = $SourceBranchesBase,
-    $TargetBranchesPostfix = $SourceBranchesPostfix,
+		$TargetRoot = $SourceRoot,
+		$TargetBranchesBase = $SourceBranchesBase,
+		$TargetBranchesPostfix = $SourceBranchesPostfix,
 
-    [Parameter(Mandatory = $true, Position = 2)]
-    $TargetName = 'trunk',
+		[Parameter(Mandatory = $true, Position = 2)]
+		$TargetName = 'trunk',
 
-	[switch]
-	$RecordOnly = $false
-)
+		[switch]
+		$RecordOnly = $false
+	)
 
-$scriptPath = $MyInvocation.MyCommand.Path
-$dir = Split-Path $scriptPath
-& $dir\Switch-Branch.ps1 -RootUrl $TargetRoot -BranchesBase $TargetBranchesBase -BranchesPostfix $TargetBranchesPostfix $TargetName
+	Switch-Branch -RootUrl $TargetRoot -BranchesBase $TargetBranchesBase -BranchesPostfix $TargetBranchesPostfix $TargetName
 
-$branchUrl = & $dir\Resolve-Branch.ps1 $SourceRoot $SourceBranchesBase $SourceBranchesPostfix $SourceName
+	$branchUrl = Resolve-Branch $SourceRoot $SourceBranchesBase $SourceBranchesPostfix $SourceName
 
-if ($RecordOnly) {
-	$option = '--record-only'
-} else {
-	$option = ''
+	if ($RecordOnly) {
+		$option = '--record-only'
+	} else {
+		$option = ''
+	}
+
+	Write-Output "Merging branch $branchUrl"
+	svn merge $option $branchUrl
 }
-
-Write-Output "Merging branch $branchUrl"
-svn merge $option $branchUrl

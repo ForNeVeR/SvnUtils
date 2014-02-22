@@ -14,6 +14,17 @@ know more.
 You may want to tune the `Resolve-Branch` script that controls aliases
 for branch names. Feel free to modify the corresponding script file.
 
+Usage
+-----
+
+For all module commands to be acessible in yur environment, execute
+the following command:
+
+    Import-Module 'path\to\SvnUtils.psd1'
+
+You may wish to add this import into your PowerShell profile (defined
+by ypur `$PROFILE` variable).
+
 Proposed workflow
 -----------------
 

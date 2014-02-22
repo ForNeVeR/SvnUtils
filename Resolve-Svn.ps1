@@ -1,10 +1,13 @@
-param(
-	[string] $TortoiseProc = 'TortoiseProc.exe'
-)
+function Resolve-Svn {
+	[CmdletBinding()]
+	param (
+		[string] $TortoiseProc = 'TortoiseProc.exe'
+	)
 
-$arguments = @(
-	'/command:resolve'
-	"/path:`"$(Resolve-Path .)`""
-)
+	$arguments = @(
+		'/command:resolve'
+		"/path:`"$(Resolve-Path .)`""
+	)
 
-Start-Process $TortoiseProc $arguments -Wait
+	Start-Process $TortoiseProc $arguments -Wait
+}
