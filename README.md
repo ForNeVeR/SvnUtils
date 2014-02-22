@@ -7,9 +7,10 @@ working with `svn` source control.
 Configuration
 -------------
 
-Currently all configuration should be done by passing the parameters
-to the functions. Please see the function descriptions if you want to
-know more.
+The values for project root path, branches base path, postfix can be
+configured through `SvnUtils.config` file placed in the current
+directory or somewhere at parent directories. See the example
+`SvnUtils.config` file bundled with the module.
 
 You may want to tune the `Resolve-Branch` script that controls aliases
 for branch names. Feel free to modify the corresponding script file.
@@ -69,21 +70,23 @@ All commands should be executed inside an existing repository. Some
 information (e.g. repository root and current branch name) will be
 extracted from it.
 
-Most parameters has the default values (in future the defaults will be
-taken from the configuration file). Defaults may be replaced in every
-command invocation.
+Most parameters will be taken from configuration file if present; they
+may be substituted with the user provided ones.
 
-    Get-Branch -Root '^/Root' -Branches '/branches' -Postfix '/company'
+    Get-Branch `
+        -Root <"Root" from config> `
+        -Branches <"Branches" from config> `
+        -Postfix <"Postfix" from config>
 
 Returns list of all branches inside the specified directory.
 
     Create-Branch `
-        -SourceRoot '^/Root' `
-        -SourceBranchesBase 'branches' `
-        -SourcePostfix 'company' `
+        -SourceRoot <"Root" from config> `
+        -SourceBranches <"Branches" from config> `
+        -SourcePostfix <"Postfix" from config> `
         -SourceName 'trunk' `
         -TargetRoot <the same as SourceRoot> `
-        -TargetBranchesBase <the same as SourceBranchesBase> `
+        -TargetBranches <the same as SourceBranches> `
         -TargetPostfix <the same as SourcePostfix> `
         -TargetName <mandatory>
 
@@ -105,13 +108,13 @@ configurable only through `Svn-Commit.ps1` source).
 Reverts the changes. Uses the TortoiseSvn GUI.
 
     Merge-Branch `
-        -SourceRoot '^/Root' `
-        -SourceBranchesBase 'branches' `
-        -SourceBranchesPostfix 'company' `
+        -SourceRoot <"Root" from config> `
+        -SourceBranches <"Branches" from config> `
+        -SourcePostfix <"Postfix" from config> `
         -SourceName <mandatory> `
         -TargetRoot <the same as SourceRoot> `
-        -TargetBranchesBase <the same as SourceBranchesBase> `
-        -TargetBranchesPostfix <the same as SourceBranchesPostfix> `
+        -TargetBranches <the same as SourceBranches> `
+        -TargetPostfix <the same as SourcePostfix> `
         -TargetName 'trunk' `
         -RecordOnly <flag; not enabled by default>
 
@@ -119,9 +122,9 @@ Performs an SVN merge. May perform a `--record-only` merge (consult
 SVN documentation).
 
     Switch-Branch `
-        -RootUrl '^/Root' `
-        -BranchesBase 'branches' `
-        -BranchesPostfix 'company' `
+        -Root <"Root" from config> `
+        -Branches <"Branches" from config> `
+        -Postfix <"Postfix" from config> `
         -BranchName <mandatory>
 
 Switches the working copy to another branch.
@@ -131,10 +134,10 @@ Switches the working copy to another branch.
 Show the conflict resolve dialog for the current directory.
 
     Close-Branch `
-        -Root '^/Root' `
-        -Branches '/branches' `
-        -Postfix '/company' `
-        -Branch <accepts multiple values from pipeline>
+        -Root <"Root" from config> `
+        -Branches <"Branches" from config> `
+        -Postfix <"Postfix" from config> `
+        -BranchName <accepts multiple values from pipeline>
 
 Closes the specified branches (i.e. moves them to the `Closed`
 directory).

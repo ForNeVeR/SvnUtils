@@ -1,24 +1,31 @@
 ﻿function Close-Branch {
 	[CmdletBinding()]
 	param(
-		$Root = '^/Root',
-		$Branches = '/branches',
-		$Postfix = '/company',
+		$Root,
+		$Branches,
+		$Postfix,
 		
 		[Parameter(Mandatory = $true, Position = 1, ValueFromPipeline = $true)]
-		[string[]]$Branch
+		[string[]] $BranchName
 	)
+
+	begin {
+		$config = Get-Configuration
+		$Root = $config.GetValue('Root', $null, $Root)
+		$Branches = $config.GetValue('Branches', $null, $Branches)
+		$Postfix = $config.GetValue('Postfix', $null, $Postfix)
+	}
 	
 	process {
-		Write-Host "Closing branch $Branch"
+		Write-Host "Closing branch $BranchName"
 		
-		$message = "Закрытие ветки $Branch."
+		$message = "Закрытие ветки $BranchName."
 		$filename = [System.IO.Path]::GetTempFileName()
 		$message | Out-File $filename -Encoding utf8
 		
 		svn mv `
-		  "$Root$Branches$Postfix/$Branch" `
-		  "$Root$Branches$Postfix/Closed/$Branch" `
+		  (Format-Url @($Root, $Branches, $Postfix, $BranchName)) `
+		  (Format-Url @($Root, $Branches, $Postfix, 'Closed', $BranchName)) `
 		  -F $filename `
 		  --encoding 'UTF-8'
 		

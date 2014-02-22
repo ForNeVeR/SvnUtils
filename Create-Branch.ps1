@@ -1,23 +1,31 @@
 ﻿function Create-Branch {
 	[CmdletBinding()]
-	param(
-		$SourceRoot = '^/Root',
-		$SourceBranchesBase = 'branches',
-		$SourcePostfix = 'company',
+	param (
+		$SourceRoot,
+		$SourceBranches,
+		$SourcePostfix,
 
 		[Parameter(Mandatory = $true, Position = 1)]
 		$SourceName = 'trunk',
 
-		$TargetRoot = $SourceRoot,
-		$TargetBranchesBase = $SourceBranchesBase,
-		$TargetPostfix = $SourcePostfix,
+		$TargetRoot,
+		$TargetBranches,
+		$TargetPostfix,
 
 		[Parameter(Mandatory = $true, Position = 2)]
 		$TargetName
 	)
 
-	$baseUrl = Resolve-Branch $SourceRoot $SourceBranchesBase $SourcePostfix $SourceName
-	$branchUrl = Resolve-Branch $TargetRoot $TargetBranchesBase $TargetPostfix $TargetName
+	$config = Get-Configuration
+	$SourceRoot = $config.GetValue('Root', $null, $SourceRoot)
+	$SourceBranches = $config.GetValue('Branches', $null, $SourceBranches)
+	$SourcePostfix = $config.GetValue('Postfix', $null, $SourcePostfix)
+	$TargetRoot = $config.GetValue('Root', $SourceRoot, $TargetRoot)
+	$TargetBranches = $config.GetValue('Branches', $SourceBranches, $TargetBranches)
+	$TargerPostfix = $config.GetValue('Postfix', $SourcePostfix, $TargetPostfix)
+
+	$baseUrl = Resolve-Branch $SourceRoot $SourceBranches $SourcePostfix $SourceName
+	$branchUrl = Resolve-Branch $TargetRoot $TargetBranches $TargetPostfix $TargetName
 
 	Write-Output 'Branching:'
 	Write-Output "$baseUrl -> $branchUrl"
@@ -37,5 +45,5 @@
 		Write-Warning "Branch already exists"
 	}
 
-	svn sw $branchUrl
+	svn switch $branchUrl
 }

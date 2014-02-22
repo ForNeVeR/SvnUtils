@@ -1,10 +1,15 @@
 function Get-Branch {
 	[CmdletBinding()]
-	param(
-		$Root = '^/Root',
-		$Branches = '/branches',
-		$Postfix = '/company'
+	param (
+		$Root,
+		$Branches,
+		$Postfix
 	)
 
-	svn ls $Root$Branches$Postfix
+	$config = Get-Configuration
+	$Root = $config.GetValue('Root', $null, $Root)
+	$Branches = $config.GetValue('Branches', $null, $Branches)
+	$Postfix = $config.GetValue('Postfix', $null, $Postfix)
+
+	svn ls (Format-Url @($Root, $Branches, $Postfix))
 }
