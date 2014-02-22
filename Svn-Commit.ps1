@@ -1,13 +1,16 @@
 ﻿function Svn-Commit {
 	[CmdletBinding()]
 	param(
-		[string] $TortoiseProc = 'TortoiseProc.exe',
-		[string] $Clipboard = 'clip.exe',
 		[switch] $ShowBrowser
 	)
 
+	$config = Get-Configuration
+	$svn = $config.GetValue('svn', 'svn')
+	$TortoiseProc = $config.GetValue('TortoiseProc', 'TortoiseProc')
+	$clip = $config.GetValue('clip', 'clip')
+
 	function Get-MergedBranch() {
-		$mergeInfo = svn diff --non-recursive | Select-String 'Merged'
+		$mergeInfo = & $svn diff --non-recursive | Select-String 'Merged'
 		$parsedInfos = $mergeInfo | % {
 			if ($_ -match '(/.*?):r(\d+)-(\d+)') {
 				[pscustomobject] @{
@@ -26,7 +29,7 @@
 		$oldEncoding = [Console]::OutputEncoding
 		try {
 			[Console]::OutputEncoding = [Text.Encoding]::UTF8
-			$log = [xml] $(svn log "^/$logUrl" --limit 1 --xml)
+			$log = [xml] $(& $svn log "^/$logUrl" --limit 1 --xml)
 			$log.log.logentry.msg
 		} finally {
 			[Console]::OutputEncoding = $oldEncoding
@@ -64,16 +67,16 @@
 	Write-Host "Starting $TortoiseProc..." -ForegroundColor White
 	Start-Process $TortoiseProc $arguments -Wait
 
-	svn update
+	& $svn update
 
-	$info = & $dir\Parse-SvnInfo.ps1 $(svn info)
+	$info = Parse-SvnInfo $(& $svn info)
 	$revision = $info['Last Changed Rev']
 
 	$url = "http://jira/browse/$branchName"
 	$branchId = 'http://svb/svn/project' + $branch.Substring($root.Length)
 	$message = "$branchId, rev. $revision."
 
-	$message | & $Clipboard
+	$message | & $clip
 
 	Write-Host "Message copied into clipboard." -ForegroundColor White
 

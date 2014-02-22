@@ -92,10 +92,7 @@ Returns list of all branches inside the specified directory.
 
 Creates a new branch inside the repository.
 
-    Svn-Commit `
-        -TortoiseProc 'TortoiseProc.exe' `
-        -Clipboard 'clip.exe' `
-        -ShowBrowser <flag; not enabled by default>
+    Svn-Commit -ShowBrowser <flag; not enabled by default>
 
 Commits the current changes with TortoiseSvn. Tries to detect merge
 commits and present the nice commit messages for these cases. May also
@@ -103,7 +100,7 @@ copy the branch name and revision to clipboard and even open the
 browser with the corresponding bug tracker page (currently
 configurable only through `Svn-Commit.ps1` source).
 
-    Revert-Branch -TortoiseProc 'TortoiseProc.exe'
+    Revert-Branch
 
 Reverts the changes. Uses the TortoiseSvn GUI.
 
@@ -129,9 +126,10 @@ SVN documentation).
 
 Switches the working copy to another branch.
 
-    Resolve-Svn -TortoiseProc 'TortoiseProc.exe'
+    Resolve-Svn
 
-Show the conflict resolve dialog for the current directory.
+Show the TortoiseSvn conflict resolve dialog for the current
+directory.
 
     Close-Branch `
         -Root <"Root" from config> `

@@ -25,7 +25,8 @@ function Merge-Branch {
 	$SourcePostfix = $config.GetValue('Postfix', $null, $SourcePostfix)
 	$TargetRoot = $config.GetValue('Root', $SourceRoot, $TargetRoot)
 	$TargetBranches = $config.GetValue('Branches', $SourceBranches, $TargetBranches)
-	$TargerPostfix = $config.GetValue('Postfix', $SourcePostfix, $TargetPostfix)
+	$TargetPostfix = $config.GetValue('Postfix', $SourcePostfix, $TargetPostfix)
+	$svn = $config.GetValue('svn', 'svn')
 
 	Switch-Branch `
 	  -Root $TargetRoot `
@@ -42,5 +43,5 @@ function Merge-Branch {
 	}
 
 	Write-Output "Merging branch $branchUrl"
-	svn merge $option $branchUrl
+	& $svn merge $option $branchUrl
 }

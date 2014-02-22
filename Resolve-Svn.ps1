@@ -1,8 +1,8 @@
 function Resolve-Svn {
 	[CmdletBinding()]
-	param (
-		[string] $TortoiseProc = 'TortoiseProc.exe'
-	)
+	
+	$config = Get-Configuration
+	$TortoiseProc = $config.GetValue('TortoiseProc', 'TortoiseProc')
 
 	$arguments = @(
 		'/command:resolve'

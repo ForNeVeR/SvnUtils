@@ -10,6 +10,7 @@ function Get-Branch {
 	$Root = $config.GetValue('Root', $null, $Root)
 	$Branches = $config.GetValue('Branches', $null, $Branches)
 	$Postfix = $config.GetValue('Postfix', $null, $Postfix)
+	$svn = $config.GetValue('svn', 'svn')
 
-	svn ls (Format-Url @($Root, $Branches, $Postfix))
+	& $svn ls (Format-Url @($Root, $Branches, $Postfix))
 }

@@ -14,6 +14,7 @@
 		$Root = $config.GetValue('Root', $null, $Root)
 		$Branches = $config.GetValue('Branches', $null, $Branches)
 		$Postfix = $config.GetValue('Postfix', $null, $Postfix)
+		$svn = $config.GetValue('svn', 'svn')
 	}
 	
 	process {
@@ -23,7 +24,7 @@
 		$filename = [System.IO.Path]::GetTempFileName()
 		$message | Out-File $filename -Encoding utf8
 		
-		svn mv `
+		& $svn mv `
 		  (Format-Url @($Root, $Branches, $Postfix, $BranchName)) `
 		  (Format-Url @($Root, $Branches, $Postfix, 'Closed', $BranchName)) `
 		  -F $filename `
