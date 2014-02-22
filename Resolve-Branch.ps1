@@ -23,10 +23,5 @@ function Resolve-Branch {
 		default { @($BaseUrl, $BranchesBase, $BranchesPostfix, $BranchName) }
 	}
 
-	$urlParts = $urlParts | ? {
-		$_
-	}
-
-	$branchUrl = [string]::Join('/', $urlParts)
-	$branchUrl
+	Format-Url $urlParts
 }
