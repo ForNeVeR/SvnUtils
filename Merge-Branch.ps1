@@ -19,6 +19,7 @@ function Merge-Branch {
 		$RecordOnly = $false
 	)
 
+	$config = Get-Configuration
 	$SourceRoot = $config.GetValue('Root', $null, $SourceRoot)
 	$SourceBranches = $config.GetValue('Branches', $null, $SourceBranches)
 	$SourcePostfix = $config.GetValue('Postfix', $null, $SourcePostfix)
