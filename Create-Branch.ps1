@@ -45,5 +45,5 @@
 		Write-Warning "Branch already exists"
 	}
 
-	svn sw $branchUrl
+	svn switch $branchUrl
 }
