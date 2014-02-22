@@ -74,16 +74,16 @@ Most parameters will be taken from configuration file if present; they
 may be substituted with the user provided ones.
 
     Get-Branch `
-        -Root <project root path> `
-        -Branches <branches base path> `
-        -Postfix <postfix>
+        -Root <"Root" from config> `
+        -Branches <"Branches" from config> `
+        -Postfix <"Postfix" from config>
 
 Returns list of all branches inside the specified directory.
 
     Create-Branch `
-        -SourceRoot `
-        -SourceBranches `
-        -SourcePostfix `
+        -SourceRoot <"Root" from config> `
+        -SourceBranches <"Branches" from config> `
+        -SourcePostfix <"Postfix" from config> `
         -SourceName 'trunk' `
         -TargetRoot <the same as SourceRoot> `
         -TargetBranches <the same as SourceBranches> `
@@ -108,9 +108,9 @@ configurable only through `Svn-Commit.ps1` source).
 Reverts the changes. Uses the TortoiseSvn GUI.
 
     Merge-Branch `
-        -SourceRoot `
-        -SourceBranches `
-        -SourcePostfix `
+        -SourceRoot <"Root" from config> `
+        -SourceBranches <"Branches" from config> `
+        -SourcePostfix <"Postfix" from config> `
         -SourceName <mandatory> `
         -TargetRoot <the same as SourceRoot> `
         -TargetBranches <the same as SourceBranches> `
@@ -122,9 +122,9 @@ Performs an SVN merge. May perform a `--record-only` merge (consult
 SVN documentation).
 
     Switch-Branch `
-        -Root '^/Root' `
-        -Branches 'branches' `
-        -Postfix 'company' `
+        -Root <"Root" from config> `
+        -Branches <"Branches" from config> `
+        -Postfix <"Postfix" from config> `
         -BranchName <mandatory>
 
 Switches the working copy to another branch.
