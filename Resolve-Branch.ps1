@@ -11,6 +11,8 @@ function Resolve-Branch {
 		$BranchName
 	)
 
+	$ErrorActionPreference = 'Stop'
+
 	$urlParts = switch ($BranchName) {
 		'current' {
 			$config = Get-Configuration

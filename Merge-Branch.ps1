@@ -19,6 +19,8 @@ function Merge-Branch {
 		$RecordOnly = $false
 	)
 
+	$ErrorActionPreference = 'Stop'
+
 	$config = Get-Configuration
 	$SourceRoot = $config.GetValue('Root', $null, $SourceRoot)
 	$SourceBranches = $config.GetValue('Branches', $null, $SourceBranches)

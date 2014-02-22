@@ -6,6 +6,8 @@ function Get-Branch {
 		$Postfix
 	)
 
+	$ErrorActionPreference = 'Stop'
+
 	$config = Get-Configuration
 	$Root = $config.GetValue('Root', $null, $Root)
 	$Branches = $config.GetValue('Branches', $null, $Branches)

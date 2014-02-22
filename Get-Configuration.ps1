@@ -1,4 +1,6 @@
 ﻿function Get-Configuration {
+	$ErrorActionPreference = 'Stop'
+
 	$configFileName = 'SvnUtils.config'
 
 	$directory = Get-Item .

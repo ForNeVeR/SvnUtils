@@ -9,6 +9,8 @@ function Switch-Branch {
 		$BranchName
 	)
 
+	$ErrorActionPreference = 'Stop'	
+
 	$Root = $config.GetValue('Root', $null, $Root)
 	$Branches = $config.GetValue('Branches', $null, $Branches)
 	$Postfix = $config.GetValue('Postfix', $null, $Postfix)

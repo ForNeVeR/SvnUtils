@@ -4,6 +4,8 @@
 		[string[]] $Parts
 	)
 
+	$ErrorActionPreference = 'Stop'
+
 	# Remove empty entries:
 	$parts = $parts | ? { $_ }
 

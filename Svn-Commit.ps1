@@ -4,6 +4,8 @@
 		[switch] $ShowBrowser
 	)
 
+	$ErrorActionPreference = 'Stop'
+
 	$config = Get-Configuration
 	$svn = $config.GetValue('svn', 'svn')
 	$TortoiseProc = $config.GetValue('TortoiseProc', 'TortoiseProc')

@@ -4,6 +4,8 @@ function Parse-SvnInfo {
 		$Info
 	)
 
+	$ErrorActionPreference = 'Stop'
+
 	$table = @{}
 	foreach ($item in $info) {
 		$index = $item.IndexOf(':')

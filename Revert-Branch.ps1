@@ -1,5 +1,6 @@
 ﻿function Revert-Branch {
 	[CmdletBinding()]
+	$ErrorActionPreference = 'Stop'
 
 	$config = Get-Configuration
 	$TortoiseProc = $config.GetValue('TortoiseProc', 'TortoiseProc')
