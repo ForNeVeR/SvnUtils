@@ -134,10 +134,10 @@ Switches the working copy to another branch.
 Show the conflict resolve dialog for the current directory.
 
     Close-Branch `
-        -Root '^/Root' `
-        -Branches '/branches' `
-        -Postfix '/company' `
-        -Branch <accepts multiple values from pipeline>
+        -Root <"Root" from config> `
+        -Branches <"Branches" from config> `
+        -Postfix <"Postfix" from config> `
+        -BranchName <accepts multiple values from pipeline>
 
 Closes the specified branches (i.e. moves them to the `Closed`
 directory).
