@@ -108,13 +108,13 @@ configurable only through `Svn-Commit.ps1` source).
 Reverts the changes. Uses the TortoiseSvn GUI.
 
     Merge-Branch `
-        -SourceRoot '^/Root' `
-        -SourceBranchesBase 'branches' `
-        -SourceBranchesPostfix 'company' `
+        -SourceRoot `
+        -SourceBranches `
+        -SourcePostfix `
         -SourceName <mandatory> `
         -TargetRoot <the same as SourceRoot> `
-        -TargetBranchesBase <the same as SourceBranchesBase> `
-        -TargetBranchesPostfix <the same as SourceBranchesPostfix> `
+        -TargetBranches <the same as SourceBranches> `
+        -TargetPostfix <the same as SourcePostfix> `
         -TargetName 'trunk' `
         -RecordOnly <flag; not enabled by default>
 
@@ -122,9 +122,9 @@ Performs an SVN merge. May perform a `--record-only` merge (consult
 SVN documentation).
 
     Switch-Branch `
-        -RootUrl '^/Root' `
-        -BranchesBase 'branches' `
-        -BranchesPostfix 'company' `
+        -Root '^/Root' `
+        -Branches 'branches' `
+        -Postfix 'company' `
         -BranchName <mandatory>
 
 Switches the working copy to another branch.

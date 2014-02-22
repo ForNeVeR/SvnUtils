@@ -1,14 +1,15 @@
 function Switch-Branch {
 	[CmdletBinding()]
 	param (
-		[string] $RootUrl = '^/Root',
-		[string] $BranchesBase = 'branches',
-		[string] $BranchesPostfix = 'company',
+		$Root = '^/Root',
+		$Branches = 'branches',
+		$Postfix = 'company',
+		
 		[Parameter(Mandatory = $true, Position = 1)]
-		[string] $BranchName
+		$BranchName
 	)
 
-	$branchUrl = Resolve-Branch $RootUrl $BranchesBase $BranchesPostfix $BranchName
+	$branchUrl = Resolve-Branch $Root $Branches $Postfix $BranchName
 
 	Write-Output "Switching to branch $branchUrl"
 	svn switch $branchUrl

@@ -1,15 +1,16 @@
 function Merge-Branch {
 	[CmdletBinding()]
-	param(
-		$SourceRoot = '^/Root',
-		$SourceBranchesBase = 'branches',
-		$SourceBranchesPostfix = 'company',
+	param (
+		$SourceRoot,
+		$SourceBranches,
+		$SourcePostfix,
+
 		[Parameter(Mandatory = $true, Position = 1)]
 		$SourceName,
 
-		$TargetRoot = $SourceRoot,
-		$TargetBranchesBase = $SourceBranchesBase,
-		$TargetBranchesPostfix = $SourceBranchesPostfix,
+		$TargetRoot,
+		$TargetBranches,
+		$TargetPostfix,
 
 		[Parameter(Mandatory = $true, Position = 2)]
 		$TargetName = 'trunk',
@@ -18,9 +19,20 @@ function Merge-Branch {
 		$RecordOnly = $false
 	)
 
-	Switch-Branch -RootUrl $TargetRoot -BranchesBase $TargetBranchesBase -BranchesPostfix $TargetBranchesPostfix $TargetName
+	$SourceRoot = $config.GetValue('Root', $null, $SourceRoot)
+	$SourceBranches = $config.GetValue('Branches', $null, $SourceBranches)
+	$SourcePostfix = $config.GetValue('Postfix', $null, $SourcePostfix)
+	$TargetRoot = $config.GetValue('Root', $SourceRoot, $TargetRoot)
+	$TargetBranches = $config.GetValue('Branches', $SourceBranches, $TargetBranches)
+	$TargerPostfix = $config.GetValue('Postfix', $SourcePostfix, $TargetPostfix)
 
-	$branchUrl = Resolve-Branch $SourceRoot $SourceBranchesBase $SourceBranchesPostfix $SourceName
+	Switch-Branch `
+	  -Root $TargetRoot `
+	  -Branches $TargetBranches `
+	  -Postfix $TargetPostfix `
+	  $TargetName
+
+	$branchUrl = Resolve-Branch $SourceRoot $SourceBranches $SourcePostfix $SourceName
 
 	if ($RecordOnly) {
 		$option = '--record-only'
