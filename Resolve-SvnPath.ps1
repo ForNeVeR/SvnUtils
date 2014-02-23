@@ -1,13 +1,13 @@
 function Resolve-SvnPath {
 	[CmdletBinding()]
 	param (
-		[Parameter(Mandatory = $true, Position = 1)]
+		[Parameter(Position = 1)]
 		$BaseUrl,
-		[Parameter(Mandatory = $true, Position = 2)]
+		[Parameter(Position = 2)]
 		$BranchesBase,
-		[Parameter(Mandatory = $true, Position = 3)]
+		[Parameter(Position = 3)]
 		$BranchesPostfix,
-		[Parameter(Mandatory = $true, Position = 4)]
+		[Parameter(Position = 4)]
 		$BranchName
 	)
 
