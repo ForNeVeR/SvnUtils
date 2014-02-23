@@ -1,4 +1,4 @@
-﻿function Revert-SvnBranch {
+﻿function Revert-SvnChange {
 	[CmdletBinding()]
 	$ErrorActionPreference = 'Stop'
 

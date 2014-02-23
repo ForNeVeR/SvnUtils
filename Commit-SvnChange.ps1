@@ -1,4 +1,4 @@
-﻿function Commit-Svn {
+﻿function Commit-SvnChange {
 	[CmdletBinding()]
 	param (
 		[switch] $ShowBrowser

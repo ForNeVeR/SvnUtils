@@ -12,8 +12,9 @@ configured through `SvnUtils.config` file placed in the current
 directory or somewhere at parent directories. See the example
 `SvnUtils.config` file bundled with the module.
 
-You may want to tune the `Resolve-Branch` script that controls aliases
-for branch names. Feel free to modify the corresponding script file.
+You may want to tune the `Resolve-SvnPath` script that controls
+aliases for branch names. Feel free to modify the corresponding script
+file.
 
 Usage
 -----
@@ -58,7 +59,7 @@ Prerequisites
 -------------
 
 Most commands require you to install any console SVN client compatible
-with your repositories. Some commands (for example, `Svn-Commit`
+with your repositories. Some commands (for example, `Commit-SvnChange`
 require additional tools such as
 [TortoiseSvn](http://tortoisesvn.net/) and a Web browser (not
 required, see below).
@@ -92,7 +93,7 @@ Returns list of all branches inside the specified directory.
 
 Creates a new branch inside the repository.
 
-    Commit-Svn -ShowBrowser <flag; not enabled by default>
+    Commit-SvnChange -ShowBrowser <flag; not enabled by default>
 
 Commits the current changes with TortoiseSvn. Tries to detect merge
 commits and present the nice commit messages for these cases. May also
@@ -100,9 +101,9 @@ copy the branch name and revision to clipboard and even open the
 browser with the corresponding bug tracker page (currently
 configurable only through `Svn-Commit.ps1` source).
 
-    Revert-SvnBranch
+    Revert-SvnChange
 
-Reverts the changes. Uses the TortoiseSvn GUI.
+Reverts the working copy changes using the TortoiseSvn GUI.
 
     Merge-SvnBranch `
         -SourceRoot <"Root" from config> `
@@ -126,7 +127,7 @@ SVN documentation).
 
 Switches the working copy to another branch.
 
-    Resolve-SvnBranch
+    Resolve-SvnConflict
 
 Show the TortoiseSvn conflict resolve dialog for the current
 directory.
