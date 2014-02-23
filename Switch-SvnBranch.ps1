@@ -11,6 +11,7 @@ function Switch-SvnBranch {
 
 	$ErrorActionPreference = 'Stop'	
 
+	$config = Get-Configuration
 	$Root = $config.GetValue('Root', $null, $Root)
 	$Branches = $config.GetValue('Branches', $null, $Branches)
 	$Postfix = $config.GetValue('Postfix', $null, $Postfix)
