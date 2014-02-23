@@ -1,4 +1,4 @@
-function Resolve-Svn {
+function Resolve-SvnBranch {
 	[CmdletBinding()]
 	$ErrorActionPreference = 'Stop'
 	

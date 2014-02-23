@@ -1,4 +1,4 @@
-function Switch-Branch {
+function Switch-SvnBranch {
 	[CmdletBinding()]
 	param (
 		$Root,
@@ -16,7 +16,7 @@ function Switch-Branch {
 	$Postfix = $config.GetValue('Postfix', $null, $Postfix)
 	$svn = $config.GetValue('svn', 'svn')
 
-	$branchUrl = Resolve-Branch $Root $Branches $Postfix $BranchName
+	$branchUrl = Resolve-SvnPath $Root $Branches $Postfix $BranchName
 
 	Write-Output "Switching to branch $branchUrl"
 	& $svn switch $branchUrl

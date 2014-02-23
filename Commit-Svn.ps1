@@ -1,6 +1,6 @@
-﻿function Svn-Commit {
+﻿function Commit-Svn {
 	[CmdletBinding()]
-	param(
+	param (
 		[switch] $ShowBrowser
 	)
 
@@ -48,10 +48,10 @@
 		$mergedBranchUrl = $mergedBranch.Url
 		$mergedBranchName = $mergedBranchUrl.Split('/')[-1]
 		$mergedRevision = $mergedBranch.EndRevision
-	
+
 		Write-Host "Merge detected: " -NoNewline -ForegroundColor White
 		Write-Host "$mergedBranchName ($mergedBranchUrl, rev. $mergedRevision)."
-	
+
 		$escapedName = [regex]::Escape("$mergedBranchName")
 		$log = $(Get-SvnLog $mergedBranchUrl) -replace "$($escapedName):?\s+", ''
 

@@ -1,4 +1,4 @@
-function Resolve-Branch {
+function Resolve-SvnPath {
 	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true, Position = 1)]

@@ -1,4 +1,4 @@
-function Get-Branch {
+function Get-SvnBranch {
 	[CmdletBinding()]
 	param (
 		$Root,

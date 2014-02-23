@@ -1,6 +1,6 @@
-﻿function Close-Branch {
+﻿function Close-SvnBranch {
 	[CmdletBinding()]
-	param(
+	param (
 		$Root,
 		$Branches,
 		$Postfix,

@@ -1,4 +1,4 @@
-﻿function Create-Branch {
+﻿function Create-SvnBranch {
 	[CmdletBinding()]
 	param (
 		$SourceRoot,
@@ -27,8 +27,8 @@
 	$TargetPostfix = $config.GetValue('Postfix', $SourcePostfix, $TargetPostfix)
 	$svn = $config.GetValue('svn', 'svn')
 
-	$baseUrl = Resolve-Branch $SourceRoot $SourceBranches $SourcePostfix $SourceName
-	$branchUrl = Resolve-Branch $TargetRoot $TargetBranches $TargetPostfix $TargetName
+	$baseUrl = Resolve-SvnPath $SourceRoot $SourceBranches $SourcePostfix $SourceName
+	$branchUrl = Resolve-SvnPath $TargetRoot $TargetBranches $TargetPostfix $TargetName
 
 	Write-Output 'Branching:'
 	Write-Output "$baseUrl -> $branchUrl"

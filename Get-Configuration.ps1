@@ -1,4 +1,5 @@
 ﻿function Get-Configuration {
+	[CmdletBinding()]
 	$ErrorActionPreference = 'Stop'
 
 	$configFileName = 'SvnUtils.config'

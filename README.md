@@ -73,14 +73,14 @@ extracted from it.
 Most parameters will be taken from configuration file if present; they
 may be substituted with the user provided ones.
 
-    Get-Branch `
+    Get-SvnBranch `
         -Root <"Root" from config> `
         -Branches <"Branches" from config> `
         -Postfix <"Postfix" from config>
 
 Returns list of all branches inside the specified directory.
 
-    Create-Branch `
+    Create-SvnBranch `
         -SourceRoot <"Root" from config> `
         -SourceBranches <"Branches" from config> `
         -SourcePostfix <"Postfix" from config> `
@@ -92,7 +92,7 @@ Returns list of all branches inside the specified directory.
 
 Creates a new branch inside the repository.
 
-    Svn-Commit -ShowBrowser <flag; not enabled by default>
+    Commit-Svn -ShowBrowser <flag; not enabled by default>
 
 Commits the current changes with TortoiseSvn. Tries to detect merge
 commits and present the nice commit messages for these cases. May also
@@ -100,11 +100,11 @@ copy the branch name and revision to clipboard and even open the
 browser with the corresponding bug tracker page (currently
 configurable only through `Svn-Commit.ps1` source).
 
-    Revert-Branch
+    Revert-SvnBranch
 
 Reverts the changes. Uses the TortoiseSvn GUI.
 
-    Merge-Branch `
+    Merge-SvnBranch `
         -SourceRoot <"Root" from config> `
         -SourceBranches <"Branches" from config> `
         -SourcePostfix <"Postfix" from config> `
@@ -118,7 +118,7 @@ Reverts the changes. Uses the TortoiseSvn GUI.
 Performs an SVN merge. May perform a `--record-only` merge (consult
 SVN documentation).
 
-    Switch-Branch `
+    Switch-SvnBranch `
         -Root <"Root" from config> `
         -Branches <"Branches" from config> `
         -Postfix <"Postfix" from config> `
@@ -126,12 +126,12 @@ SVN documentation).
 
 Switches the working copy to another branch.
 
-    Resolve-Svn
+    Resolve-SvnBranch
 
 Show the TortoiseSvn conflict resolve dialog for the current
 directory.
 
-    Close-Branch `
+    Close-SvnBranch `
         -Root <"Root" from config> `
         -Branches <"Branches" from config> `
         -Postfix <"Postfix" from config> `

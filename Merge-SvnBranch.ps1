@@ -1,4 +1,4 @@
-function Merge-Branch {
+function Merge-SvnBranch {
 	[CmdletBinding()]
 	param (
 		$SourceRoot,
@@ -30,13 +30,13 @@ function Merge-Branch {
 	$TargetPostfix = $config.GetValue('Postfix', $SourcePostfix, $TargetPostfix)
 	$svn = $config.GetValue('svn', 'svn')
 
-	Switch-Branch `
+	Switch-SvnBranch `
 	  -Root $TargetRoot `
 	  -Branches $TargetBranches `
 	  -Postfix $TargetPostfix `
 	  $TargetName
 
-	$branchUrl = Resolve-Branch $SourceRoot $SourceBranches $SourcePostfix $SourceName
+	$branchUrl = Resolve-SvnPath $SourceRoot $SourceBranches $SourcePostfix $SourceName
 
 	if ($RecordOnly) {
 		$option = '--record-only'
