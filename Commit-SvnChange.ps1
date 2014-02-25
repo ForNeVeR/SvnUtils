@@ -75,8 +75,8 @@
 	$revision = $info['Last Changed Rev']
 
 	$url = "http://jira/browse/$branchName"
-	$branchId = 'http://svb/svn/project' + $branch.Substring($root.Length)
-	$message = "$branchId, rev. $revision."
+	$branchUrl = $info['URL']
+	$message = "$branchUrl, rev. $revision."
 
 	$message | & $clip
 
