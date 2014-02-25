@@ -33,9 +33,12 @@
 	Write-Output 'Branching:'
 	Write-Output "$baseUrl -> $branchUrl"
 
-	# Check if branch already exists
+	# Check if branch already exists:
+	$ErrorActionPreference = 'SilentlyContinue'
 	& $svn ls $branchUrl --depth empty 2>&1 | Out-Null
 	$exists = $?
+	$ErrorActionPreference = 'Stop'
+
 	if (-not $exists) {
 		$message = "Создание ветки для работ над задачей $TargetName."
 		$filename = [System.IO.Path]::GetTempFileName()
