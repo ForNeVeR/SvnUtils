@@ -19,9 +19,9 @@ function Switch-SvnBranch {
 
 	$branchUrl = Resolve-SvnPath $Root $Branches $Postfix $BranchName
 
-	Write-Output "Switching to branch $branchUrl"
+	Write-Message "Switching to branch $branchUrl"
 	& $svn switch $branchUrl
 	if ($?) {
-		Write-Output "Switched successfully to $branchUrl"
+		Write-Message "Switched successfully to $branchUrl"
 	}
 }

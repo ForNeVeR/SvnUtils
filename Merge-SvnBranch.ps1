@@ -44,6 +44,6 @@ function Merge-SvnBranch {
 		$option = ''
 	}
 
-	Write-Output "Merging branch $branchUrl"
+	Write-Message "Merging branch $branchUrl"
 	& $svn merge $option $branchUrl
 }

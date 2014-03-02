@@ -20,7 +20,7 @@
 	}
 	
 	process {
-		Write-Host "Closing branch $BranchName"
+		Write-Message "Closing branch $BranchName"
 		
 		$message = "Закрытие ветки $BranchName."
 		$filename = [System.IO.Path]::GetTempFileName()

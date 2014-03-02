@@ -49,8 +49,7 @@
 		$mergedBranchName = $mergedBranchUrl.Split('/')[-1]
 		$mergedRevision = $mergedBranch.EndRevision
 
-		Write-Host "Merge detected: " -NoNewline -ForegroundColor White
-		Write-Host "$mergedBranchName ($mergedBranchUrl, rev. $mergedRevision)."
+		Write-Message "Merge detected: $mergedBranchName ($mergedBranchUrl, rev. $mergedRevision)."
 
 		$escapedName = [regex]::Escape("$mergedBranchName")
 		$log = $(Get-SvnLog $mergedBranchUrl) -replace "$($escapedName):?\s+", ''
@@ -66,7 +65,7 @@
 		"/logmsg:`"$logMessage`""
 	)
 
-	Write-Host "Starting $TortoiseProc..." -ForegroundColor White
+	Write-Message "Starting $TortoiseProc"
 	Start-Process $TortoiseProc $arguments -Wait
 
 	& $svn update
@@ -80,7 +79,7 @@
 
 	$message | & $clip
 
-	Write-Host "Message copied into clipboard." -ForegroundColor White
+	Write-Message "Message copied into the clipboard."
 
 	if ($ShowBrowser -and $branchName -ne 'trunk') {
 		start $url

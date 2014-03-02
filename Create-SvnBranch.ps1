@@ -30,8 +30,7 @@
 	$baseUrl = Resolve-SvnPath $SourceRoot $SourceBranches $SourcePostfix $SourceName
 	$branchUrl = Resolve-SvnPath $TargetRoot $TargetBranches $TargetPostfix $TargetName
 
-	Write-Output 'Branching:'
-	Write-Output "$baseUrl -> $branchUrl"
+	Write-Message "Branching: $baseUrl -> $branchUrl"
 
 	# Check if branch already exists:
 	$ErrorActionPreference = 'SilentlyContinue'
@@ -48,7 +47,7 @@
 
 		Remove-Item $filename
 	} else {
-		Write-Warning "Branch already exists"
+		Write-Message "Branch already exists"
 	}
 
 	& $svn switch $branchUrl

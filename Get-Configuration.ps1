@@ -15,7 +15,7 @@
 
 	$path = "$($directory.FullName)\$configFileName"
 
-	Write-Host "Found configuration file at $path"
+	Write-Message "Found configuration file at $path"
 
 	$config = Invoke-Expression ([IO.File]::ReadAllText($path))
     $config | Add-Member -MemberType ScriptMethod -Name 'GetValue' -Value {
