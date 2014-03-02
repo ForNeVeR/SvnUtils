@@ -14,5 +14,8 @@ function Get-SvnBranch {
 	$Postfix = $config.GetValue('Postfix', $null, $Postfix)
 	$svn = $config.GetValue('svn', 'svn')
 
-	& $svn ls (Format-Url @($Root, $Branches, $Postfix))
+	& $svn list (Format-Url @($Root, $Branches, $Postfix)) | % {
+		# svn list always returns a trailing slash we don't need.
+		$_.Split('/')[0]
+	}
 }
