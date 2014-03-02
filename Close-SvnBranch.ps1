@@ -4,6 +4,7 @@
 		$Root,
 		$Branches,
 		$Postfix,
+		$Closed,
 		
 		[Parameter(Mandatory = $true, Position = 1, ValueFromPipeline = $true)]
 		[string[]] $BranchName
@@ -16,6 +17,7 @@
 		$Root = $config.GetValue('Root', $null, $Root)
 		$Branches = $config.GetValue('Branches', $null, $Branches)
 		$Postfix = $config.GetValue('Postfix', $null, $Postfix)
+		$Closed = $config.GetValue('Closed', $null, $Closed)
 		$svn = $config.GetValue('svn', 'svn')
 	}
 	

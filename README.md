@@ -136,6 +136,7 @@ directory.
         -Root <"Root" from config> `
         -Branches <"Branches" from config> `
         -Postfix <"Postfix" from config> `
+		-Closed <"Closed" from config> `
         -BranchName <accepts multiple values from pipeline>
 
 Closes the specified branches (i.e. moves them to the `Closed`
