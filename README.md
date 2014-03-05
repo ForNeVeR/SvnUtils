@@ -141,3 +141,10 @@ directory.
 
 Closes the specified branches (i.e. moves them to the `Closed`
 directory).
+
+Messages
+--------
+
+Some commands (e.g. `Create-SvnBranch` and `Close-SvnBranch`) generate
+messages for SVN log. These messages may be localized in the
+configuration file.

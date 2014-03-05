@@ -26,6 +26,7 @@
 	$TargetBranches = $config.GetValue('Branches', $SourceBranches, $TargetBranches)
 	$TargetPostfix = $config.GetValue('Postfix', $SourcePostfix, $TargetPostfix)
 	$svn = $config.GetValue('svn', 'svn')
+	$messageTemplate = $config.GetValue('CreateMessageTemplate', 'Create branch {0}.')
 
 	$baseUrl = Resolve-SvnPath $SourceRoot $SourceBranches $SourcePostfix $SourceName
 	$branchUrl = Resolve-SvnPath $TargetRoot $TargetBranches $TargetPostfix $TargetName
@@ -39,7 +40,7 @@
 	$ErrorActionPreference = 'Stop'
 
 	if (-not $exists) {
-		$message = "Создание ветки для работ над задачей $TargetName."
+		$message = $messageTemplate -f $TargetName
 		$filename = [System.IO.Path]::GetTempFileName()
 		$message | Out-File $filename -Encoding utf8
 

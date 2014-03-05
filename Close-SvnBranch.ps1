@@ -19,12 +19,13 @@
 		$Postfix = $config.GetValue('Postfix', $null, $Postfix)
 		$Closed = $config.GetValue('Closed', $null, $Closed)
 		$svn = $config.GetValue('svn', 'svn')
+		$messageTemplate = $config.GetValue('CloseMessageTemplate', 'Close branch {0}.')
 	}
 	
 	process {
 		Write-Message "Closing branch $BranchName"
 		
-		$message = "Закрытие ветки $BranchName."
+		$message = $messageTemplate -f $messageTemplate
 		$filename = [System.IO.Path]::GetTempFileName()
 		$message | Out-File $filename -Encoding utf8
 		
