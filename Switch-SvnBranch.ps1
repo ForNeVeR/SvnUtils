@@ -12,16 +12,5 @@ function Switch-SvnBranch {
 	$ErrorActionPreference = 'Stop'	
 
 	$config = Get-Configuration
-	$Root = $config.GetValue('Root', $null, $Root)
-	$Branches = $config.GetValue('Branches', $null, $Branches)
-	$Postfix = $config.GetValue('Postfix', $null, $Postfix)
-	$svn = $config.GetValue('svn', 'svn')
-
-	$branchUrl = $config.ResolveSvnPath($Root, $Branches, $Postfix, $BranchName)
-
-	Write-Message "Switching to branch $branchUrl"
-	& $svn switch $branchUrl
-	if ($?) {
-		Write-Message "Switched successfully to $branchUrl"
-	}
+	Switch-SvnBranch_Private $config $Root $Branches $Postfix $BranchName
 }

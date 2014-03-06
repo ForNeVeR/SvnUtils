@@ -32,7 +32,8 @@ function Merge-SvnBranch {
 
 	$sourceUrl = $config.ResolveSvnPath($SourceRoot, $SourceBranches, $SourcePostfix, $SourceName)
 
-	Switch-SvnBranch `
+	Switch-SvnBranch_Private `
+	  $config `
 	  -Root $TargetRoot `
 	  -Branches $TargetBranches `
 	  -Postfix $TargetPostfix `
