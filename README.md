@@ -29,7 +29,7 @@ Usage
 For all module commands to be acessible in yur environment, execute
 the following command:
 
-    Import-Module 'path\to\SvnUtils.psd1'
+    Import-Module 'path\to\SvnUtils.psd1' -DisableNameChecking
 
 You may wish to add this import into your PowerShell profile (defined
 by your `$PROFILE` variable).
