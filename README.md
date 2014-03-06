@@ -17,11 +17,18 @@ directory or somewhere at parent directories. See the example
 `SvnUtils` includes some predefined branch aliases:
 
 * `current` means the current working copy branch in any context;
+
 * `trunk` means the trunk branch.
 
 You may add your own branch resolving strategies with the
 `SvnPathResolver` function in the configuration file. Predefined
 `current` and `trunk` aliases cannot be overridden.
+
+#### Messages
+
+Some commands (e.g. `Create-SvnBranch` and `Close-SvnBranch`) generate
+messages for SVN log. These messages may be localized in the
+configuration file.
 
 Usage
 -----
@@ -148,10 +155,3 @@ directory.
 
 Closes the specified branches (i.e. moves them to the `Closed`
 directory).
-
-Messages
---------
-
-Some commands (e.g. `Create-SvnBranch` and `Close-SvnBranch`) generate
-messages for SVN log. These messages may be localized in the
-configuration file.
