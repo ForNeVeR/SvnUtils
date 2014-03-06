@@ -12,9 +12,16 @@ configured through `SvnUtils.config` file placed in the current
 directory or somewhere at parent directories. See the example
 `SvnUtils.config` file bundled with the module.
 
-You may want to tune the `Resolve-SvnPath` script that controls
-aliases for branch names. Feel free to modify the corresponding script
-file.
+#### Branch name resolving
+
+`SvnUtils` includes some predefined branch aliases:
+
+* `current` means the current working copy branch in any context;
+* `trunk` means the trunk branch.
+
+You may add your own branch resolving strategies with the
+`SvnPathResolver` function in the configuration file. Predefined
+`current` and `trunk` aliases cannot be overridden.
 
 Usage
 -----
@@ -25,7 +32,7 @@ the following command:
     Import-Module 'path\to\SvnUtils.psd1'
 
 You may wish to add this import into your PowerShell profile (defined
-by ypur `$PROFILE` variable).
+by your `$PROFILE` variable).
 
 Proposed workflow
 -----------------

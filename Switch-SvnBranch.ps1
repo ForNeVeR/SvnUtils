@@ -17,7 +17,7 @@ function Switch-SvnBranch {
 	$Postfix = $config.GetValue('Postfix', $null, $Postfix)
 	$svn = $config.GetValue('svn', 'svn')
 
-	$branchUrl = Resolve-SvnPath $Root $Branches $Postfix $BranchName
+	$branchUrl = $config.ResolveSvnPath($Root, $Branches, $Postfix, $BranchName)
 
 	Write-Message "Switching to branch $branchUrl"
 	& $svn switch $branchUrl

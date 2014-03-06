@@ -28,8 +28,8 @@
 	$svn = $config.GetValue('svn', 'svn')
 	$messageTemplate = $config.GetValue('CreateMessageTemplate', 'Create branch {0}.')
 
-	$baseUrl = Resolve-SvnPath $SourceRoot $SourceBranches $SourcePostfix $SourceName
-	$branchUrl = Resolve-SvnPath $TargetRoot $TargetBranches $TargetPostfix $TargetName
+	$baseUrl = $config.ResolveSvnPath($SourceRoot, $SourceBranches, $SourcePostfix, $SourceName)
+	$branchUrl = $config.ResolveSvnPath($TargetRoot, $TargetBranches, $TargetPostfix, $TargetName)
 
 	Write-Message "Branching: $baseUrl -> $branchUrl"
 

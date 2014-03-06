@@ -18,7 +18,7 @@
 	Write-Message "Found configuration file at $path"
 
 	$config = Invoke-Expression ([IO.File]::ReadAllText($path))
-    $config | Add-Member -MemberType ScriptMethod -Name 'GetValue' -Value {
+    $config | Add-Member -PassThru -MemberType ScriptMethod -Name 'GetValue' -Value {
 		param (
 			$Name,
 			$DefaultValue,
@@ -35,7 +35,36 @@
 				$value
 			}
 		}
-	}
+	} | Add-Member -MemberType ScriptMethod -Name 'ResolveSvnPath' -Value {
+		param (
+			$Root,
+			$Branches,
+			$Postfix,
+			$BranchName
+		)
+
+		$urlParts = switch ($BranchName) {
+			'current' {
+				$config = Get-Configuration
+				$svn = $config.GetValue('svn', 'svn')
+				$info = Parse-SvnInfo $(& $svn info)
+				@($info['URL'])
+			}
+			'trunk' {
+				@($Root, 'trunk')
+			}
+			default {
+				$result = & $this.SvnPathResolver $Root $Branches $Postfix $BranchName
+				if ($result) {
+					$result
+				} else {
+					@($Root, $Branches, $Postfix, $BranchName)
+				}
+			}
+		}
+
+		Format-Url $urlParts
+	}			
 
 	$config
 }
