@@ -25,7 +25,7 @@
 	process {
 		Write-Message "Closing branch $BranchName"
 		
-		$message = $messageTemplate -f $messageTemplate
+		$message = $messageTemplate -f $BranchName
 		$filename = [System.IO.Path]::GetTempFileName()
 		$message | Out-File $filename -Encoding utf8
 		
