@@ -17,7 +17,6 @@ directory or somewhere at parent directories. See the example
 `SvnUtils` includes some predefined branch aliases:
 
 * `current` means the current working copy branch in any context;
-
 * `trunk` means the trunk branch.
 
 You may add your own branch resolving strategies with the
