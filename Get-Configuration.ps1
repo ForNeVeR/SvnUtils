@@ -35,6 +35,17 @@
 				$value
 			}
 		}
+	} | Add-Member -PassThru -MemberType ScriptMethod -Name 'GetValueWithPriority' -Value {
+		param (
+			$DefaultValue,
+			$PriorityValue
+		)
+
+		if ($PriorityValue) {
+			$PriorityValue
+		} else {
+			$DefaultValue
+		}
 	} | Add-Member -MemberType ScriptMethod -Name 'ResolveSvnPath' -Value {
 		param (
 			$Root,
@@ -64,7 +75,7 @@
 		}
 
 		Format-Url $urlParts
-	}			
+	}
 
 	$config
 }
