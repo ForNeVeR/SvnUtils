@@ -106,6 +106,13 @@ Returns list of all branches inside the specified directory.
 
 Creates a new branch inside the repository.
 
+    Get-SvnPatch `
+        -OldRevision <mandatory> `
+        -NewRevision <mandatory> `
+        -OutputPath <mandatory>
+
+Get the patch in the SVN format and save it to the `OutputPath`.
+
     Commit-SvnChange -ShowBrowser <flag; not enabled by default>
 
 Commits the current changes with TortoiseSvn. Tries to detect merge
