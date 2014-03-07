@@ -25,9 +25,9 @@ function Merge-SvnBranch {
 	$SourceRoot = $config.GetValue('Root', $null, $SourceRoot)
 	$SourceBranches = $config.GetValue('Branches', $null, $SourceBranches)
 	$SourcePostfix = $config.GetValue('Postfix', $null, $SourcePostfix)
-	$TargetRoot = $config.GetValue('Root', $SourceRoot, $TargetRoot)
-	$TargetBranches = $config.GetValue('Branches', $SourceBranches, $TargetBranches)
-	$TargetPostfix = $config.GetValue('Postfix', $SourcePostfix, $TargetPostfix)
+	$TargetRoot = $config.GetValueWithPriority($SourceRoot, $TargetRoot)
+	$TargetBranches = $config.GetValueWithPriority($SourceBranches, $TargetBranches)
+	$TargetPostfix = $config.GetValueWithPriority($SourcePostfix, $TargetPostfix)
 	$svn = $config.GetValue('svn', 'svn')
 
 	$sourceUrl = $config.ResolveSvnPath($SourceRoot, $SourceBranches, $SourcePostfix, $SourceName)
