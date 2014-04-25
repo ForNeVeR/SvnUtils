@@ -56,8 +56,7 @@
 
 		$urlParts = switch ($BranchName) {
 			'current' {
-				$config = Get-Configuration
-				$svn = $config.GetValue('svn', 'svn')
+				$svn = $this.GetValue('svn', 'svn')
 				$info = Parse-SvnInfo $(& $svn info)
 				@($info['URL'])
 			}
