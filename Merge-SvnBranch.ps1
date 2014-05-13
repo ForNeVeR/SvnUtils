@@ -15,6 +15,8 @@ function Merge-SvnBranch {
 		[Parameter(Mandatory = $true, Position = 2)]
 		$TargetName = 'trunk',
 
+		$Revisions,
+
 		[switch]
 		$RecordOnly = $false
 	)
@@ -39,12 +41,15 @@ function Merge-SvnBranch {
 	  -Postfix $TargetPostfix `
 	  $TargetName
 
+	$arguments = @('merge')
 	if ($RecordOnly) {
-		$option = '--record-only'
-	} else {
-		$option = ''
+		$arguments += '--record-only'
 	}
+	if ($Revisions) {
+		$arguments += '-r' + $Revisions
+	}
+	$arguments += $sourceUrl
 
-	Write-Message "Merging branch $sourceUrl"
-	& $svn merge $option $sourceUrl
+	Write-Message "Starting $svn merge $arguments $sourceUrl"
+	Start-Process $svn -ArgumentList $arguments -NoNewWindow -Wait
 }

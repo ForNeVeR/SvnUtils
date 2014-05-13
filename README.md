@@ -134,10 +134,12 @@ Reverts the working copy changes using the TortoiseSvn GUI.
         -TargetBranches <the same as SourceBranches> `
         -TargetPostfix <the same as SourcePostfix> `
         -TargetName 'trunk' `
+        -Revisions `
         -RecordOnly <flag; not enabled by default>
 
 Performs an SVN merge. May perform a `--record-only` merge (consult
-SVN documentation).
+SVN documentation). `Revisions` parameter is passed to `svn merge` as
+`-r<Revisions>`.
 
     Switch-SvnBranch `
         -Root <"Root" from config> `
