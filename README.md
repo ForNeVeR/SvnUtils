@@ -72,8 +72,8 @@ Prerequisites
 -------------
 
 Most commands require you to install any console SVN client compatible
-with your repositories. Some commands (for example, `Commit-SvnChange`
-require additional tools such as
+with your repositories. Some commands (for example,
+`Commit-SvnChange`) require additional tools such as
 [TortoiseSvn](http://tortoisesvn.net/) and a Web browser (not
 required, see below).
 
