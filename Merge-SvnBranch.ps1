@@ -50,6 +50,6 @@ function Merge-SvnBranch {
 	}
 	$arguments += $sourceUrl
 
-	Write-Message "Starting $svn merge $arguments $sourceUrl"
+	Write-Message "Starting $svn $arguments"
 	Start-Process $svn -ArgumentList $arguments -NoNewWindow -Wait
 }
