@@ -12,12 +12,15 @@ function Switch-SvnBranch_Private {
 
 		[Parameter(Position = 4)]
 		$Postfix,
-		
+
 		[Parameter(Position = 5)]
-		$BranchName
+		$BranchName,
+
+		[switch]
+		$IgnoreAncestry
 	)
 
-	$ErrorActionPreference = 'Stop'	
+	$ErrorActionPreference = 'Stop'
 
 	$Root = $Config.GetValue('Root', $null, $Root)
 	$Branches = $Config.GetValue('Branches', $null, $Branches)
@@ -27,7 +30,15 @@ function Switch-SvnBranch_Private {
 	$branchUrl = $Config.ResolveSvnPath($Root, $Branches, $Postfix, $BranchName)
 
 	Write-Message "Switching to branch $branchUrl"
-	& $svn switch $branchUrl
+
+	$parameters = @('switch', $branchUrl)
+	if ($IgnoreAncestry) {
+		$parameters += '--ignore-ancestry'
+	}
+
+	Write-Message "$svn $parameters"
+	& $svn $parameters
+
 	if ($?) {
 		Write-Message "Switched successfully to $branchUrl"
 	}

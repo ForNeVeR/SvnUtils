@@ -4,13 +4,22 @@ function Switch-SvnBranch {
 		$Root,
 		$Branches,
 		$Postfix,
-		
+
 		[Parameter(Mandatory = $true, Position = 1)]
-		$BranchName
+		$BranchName,
+
+		[switch]
+		$IgnoreAncestry
 	)
 
-	$ErrorActionPreference = 'Stop'	
+	$ErrorActionPreference = 'Stop'
 
 	$config = Get-Configuration
-	Switch-SvnBranch_Private $config $Root $Branches $Postfix $BranchName
+	Switch-SvnBranch_Private `
+		$config `
+		$Root `
+		$Branches `
+		$Postfix `
+		$BranchName `
+		-IgnoreAncestry:$IgnoreAncestry
 }
