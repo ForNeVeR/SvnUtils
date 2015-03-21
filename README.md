@@ -161,3 +161,11 @@ directory.
 
 Closes the specified branches (i.e. moves them to the `Closed`
 directory).
+
+Tests
+-----
+There are tests created using [Pester](https://github.com/pester/Pester/). To invoke them, install Pester (for example,
+with `choco install pester`) and run:
+
+    cd tests
+    Invoke-Pester -Path ..
