@@ -134,14 +134,18 @@ Reverts the working copy changes using the TortoiseSvn GUI.
         -SourceBranches <"Branches" from config> `
         -SourcePostfix <"Postfix" from config> `
         -SourceName <mandatory> `
+        -Source2Root <"Root" from config> `
+        -Source2Branches <"Branches" from config> `
+        -Source2Postfix <"Postfix" from config> `
+        -Source2Name <mandatory if you want 2-URL merge> `
         -TargetRoot <the same as SourceRoot> `
         -TargetBranches <the same as SourceBranches> `
         -TargetPostfix <the same as SourcePostfix> `
         -TargetName 'trunk' `
         -RecordOnly <flag; not enabled by default>
 
-Performs an SVN merge. May perform a `--record-only` merge (consult
-SVN documentation).
+Performs an SVN merge. May perform a `--record-only` merge (consult SVN documentation). Will make 2-URL merge iff
+`Source2Name2` provided.
 
     Switch-SvnBranch `
         -Root <"Root" from config> `
