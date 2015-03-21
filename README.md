@@ -113,6 +113,10 @@ Creates a new branch inside the repository.
 
 Get the patch in the SVN format and save it to the `OutputPath`.
 
+    Apply-SvnPatch [-PatchFilename] <mandatory>
+
+Applies the patch file to the current directory with `TortoiseMerge`.
+
     Commit-SvnChange -ShowBrowser <flag; not enabled by default>
 
 Commits the current changes with TortoiseSvn. Tries to detect merge
