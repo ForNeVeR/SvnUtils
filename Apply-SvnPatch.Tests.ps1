@@ -13,12 +13,15 @@ Describe "Apply-SvnPatch" {
         svn add .\file.txt
         svn commit -m 'Initial state.'
         'text1' | Out-File file.txt -Encoding utf8
-        cmd /c svn diff > current.patch
+        cmd /c 'svn diff > current.patch'
         svn revert file.txt
 
-        It "applies the patch" {
+        function TortoiseMerge() { }
+        Mock TortoiseMerge {}
+        
+        It 'calls TortoiseMerge' {
             Apply-SvnPatch current.patch
-            cat 'file.txt' | Should Be 'text1'
+            Assert-MockCalled TortoiseMerge
         }
     }
 }
