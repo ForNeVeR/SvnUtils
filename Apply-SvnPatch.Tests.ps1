@@ -19,6 +19,8 @@ Describe "Apply-SvnPatch" {
         function TortoiseMerge() { }
         Mock TortoiseMerge {}
         
+        function Write-Message() { }
+        
         It 'calls TortoiseMerge' {
             Apply-SvnPatch current.patch
             Assert-MockCalled TortoiseMerge
