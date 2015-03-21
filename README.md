@@ -1,4 +1,4 @@
-SvnUtils
+SvnUtils [![Build status](https://ci.appveyor.com/api/projects/status/p349091qxfxsmde1/branch/develop?svg=true)](https://ci.appveyor.com/project/ForNeVeR/svnutils/branch/develop)
 ========
 
 This is the collection of PowerShell scripts for more comfortable
