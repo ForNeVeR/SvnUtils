@@ -1,6 +1,5 @@
 install:
   - choco install pester -y
-  - choco install svn -y
 build: false
 test_script:
   - ps: cd tests
