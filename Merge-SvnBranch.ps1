@@ -57,7 +57,7 @@ function Merge-SvnBranch {
 	}
 
     if ($source2Url) {
-	    Write-Message "Merging difference of $sourceUrl $source2Url"
+        Write-Message "Merging difference between $sourceUrl and $source2Url"
 	    & $svn merge $option $sourceUrl $source2Url
     } else {
 	    Write-Message "Merging branch $sourceUrl"
