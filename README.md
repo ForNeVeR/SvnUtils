@@ -72,8 +72,8 @@ Prerequisites
 -------------
 
 Most commands require you to install any console SVN client compatible
-with your repositories. Some commands (for example, `Commit-SvnChange`
-require additional tools such as
+with your repositories. Some commands (for example,
+`Commit-SvnChange`) require additional tools such as
 [TortoiseSvn](http://tortoisesvn.net/) and a Web browser (not
 required, see below).
 
@@ -142,10 +142,12 @@ Reverts the working copy changes using the TortoiseSvn GUI.
         -TargetBranches <the same as SourceBranches> `
         -TargetPostfix <the same as SourcePostfix> `
         -TargetName 'trunk' `
+        -Revisions `
         -RecordOnly <flag; not enabled by default>
 
 Performs an SVN merge. May perform a `--record-only` merge (consult SVN
-documentation). Will make 2-URL merge iff `Source2Name` provided.
+documentation). Will make 2-URL merge iff `Source2Name` provided. `Revisions`
+parameter is passed to `svn merge` as `-r<Revisions>`.
 
     Switch-SvnBranch `
         -Root <"Root" from config> `

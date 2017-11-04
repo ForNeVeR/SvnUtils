@@ -20,6 +20,8 @@ function Merge-SvnBranch {
 		[Parameter(Mandatory = $true, Position = 2)]
 		$TargetName = 'trunk',
 
+		$Revisions,
+
 		[switch]
 		$RecordOnly = $false
 	)
@@ -50,17 +52,18 @@ function Merge-SvnBranch {
 	  -Postfix $TargetPostfix `
 	  $TargetName
 
+	$arguments = @('merge')
 	if ($RecordOnly) {
-		$option = '--record-only'
-	} else {
-		$option = ''
+		$arguments += '--record-only'
 	}
-
+	if ($Revisions) {
+		$arguments += '-r' + $Revisions
+	}
+    $arguments += $sourceUrl
     if ($source2Url) {
-        Write-Message "Merging difference between $sourceUrl and $source2Url"
-	    & $svn merge $option $sourceUrl $source2Url
-    } else {
-	    Write-Message "Merging branch $sourceUrl"
-	    & $svn merge $option $sourceUrl
+        $arguments += $source2Url
     }
+
+	Write-Message "Starting $svn $arguments"
+	Start-Process $svn -ArgumentList $arguments -NoNewWindow -Wait
 }
