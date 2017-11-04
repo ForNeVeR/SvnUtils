@@ -144,8 +144,8 @@ Reverts the working copy changes using the TortoiseSvn GUI.
         -TargetName 'trunk' `
         -RecordOnly <flag; not enabled by default>
 
-Performs an SVN merge. May perform a `--record-only` merge (consult SVN documentation). Will make 2-URL merge iff
-`Source2Name2` provided.
+Performs an SVN merge. May perform a `--record-only` merge (consult SVN
+documentation). Will make 2-URL merge iff `Source2Name` provided.
 
     Switch-SvnBranch `
         -Root <"Root" from config> `
