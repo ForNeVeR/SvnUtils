@@ -153,7 +153,8 @@ parameter is passed to `svn merge` as `-r<Revisions>`.
         -Root <"Root" from config> `
         -Branches <"Branches" from config> `
         -Postfix <"Postfix" from config> `
-        -BranchName <mandatory>
+        -BranchName <mandatory> `
+        -IgnoreAncestry <flag; not enabled by default>
 
 Switches the working copy to another branch.
 
